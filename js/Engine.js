@@ -57,8 +57,17 @@ class Engine {
     // We check if the player is dead. If he is, we alert the user
     // and return from the method (Why is the return statement important?)
     if (this.isPlayerDead()) {
-      window.alert('Game over');
-      return;
+     
+      document.getElementById('alertBox').style.visibility = 'visible'; 
+      document.querySelector('button').addEventListener("click",  
+      function(){ 
+        document.getElementById('alertBox').style.visibility = 'hidden';  
+        location.reload(); 
+       }); 
+    return; 
+    
+      // const alertBox = new Text(); 
+      // return alertBox;
     }
 
     // If the player is not dead, then we put a setTimeout to run the gameLoop in 20 milliseconds
@@ -68,6 +77,25 @@ class Engine {
   // This method is not implemented correctly, which is why
   // the burger never dies. In your exercises you will fix this method.
   isPlayerDead = () => {
-    return false;
+    for (let i = 0; i < this.enemies.length; i++) {
+      let enemy = this.enemies[i];
+
+      let enemyTop = enemy.y;
+      let enemyBottom = enemy.y + ENEMY_HEIGHT;
+      let enemyLeft = enemy.x;
+      let enemyRight = enemy.x + ENEMY_WIDTH;
+
+      let playerTop = GAME_HEIGHT - (PLAYER_HEIGHT - 10);
+      let playerBottom = GAME_HEIGHT - 10;
+      let playerLeft = this.player.x;
+      let playerRight = this.player.x + PLAYER_WIDTH;
+
+      if (
+        enemyBottom > playerTop &&
+        enemyRight > playerLeft &&
+        enemyLeft < playerRight
+      ) {
+        return true;
+      }
   };
-}
+}}

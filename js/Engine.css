@@ -1,0 +1,47 @@
+#app {
+  padding: 20px;
+  display: flex;
+  height: 700px;
+  justify-content: center;
+  background-color: black;
+  border-radius: 5px;
+  width: 90vw;
+  margin: auto;
+}
+#title {
+  position: absolute;
+  color: white;
+  z-index: 200;
+  font-family: "Press Start 2P", cursive;
+  left: 390px;
+  text-decoration: underline;
+  text-decoration-thickness: 20%;
+}
+
+#alertBox {
+  position: absolute;
+  background: rgb(248, 50, 50);
+  background: radial-gradient(
+    circle,
+    rgba(248, 50, 50, 1) 0%,
+    rgba(38, 13, 24, 1) 100%
+  );
+  font-family: "Press Start 2P", cursive;
+  border: 5px solid black;
+  border-radius: 5px;
+  text-align: center;
+  top: 200px;
+  width: 500px;
+  text-shadow: 2px 2px 1px rgb(197, 192, 192);
+  visibility: hidden; 
+  z-index: 500;
+}
+.buttonNextGame {
+  font-family: "Press Start 2P", cursive;
+  color: black;
+  background-color: white;
+  margin: 10px;
+  width: 100px;
+  height: 30px;
+  border-radius: 10px;
+}

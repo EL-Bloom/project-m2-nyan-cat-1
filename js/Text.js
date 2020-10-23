@@ -10,7 +10,7 @@ class Text {
     div.style.position = 'absolute';
     div.style.left = xPos;
     div.style.top = yPos;
-    div.style.color = 'white';
+    div.style.backgroundColor = 'white';
     div.style.font = 'bold 30px Impact';
     div.style.zIndex = 2000;
 
@@ -22,5 +22,6 @@ class Text {
   // This method is used to update the text displayed in the DOM element
   update(txt) {
     this.domElement.innerText = txt;
+    txt= "Game over";
   }
 }

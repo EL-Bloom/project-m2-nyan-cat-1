@@ -1,9 +1,20 @@
 <html>
   <head>
-    <title>Nyan Kat</title>
+    <title>Nyan Kat</title> 
+    <link rel="stylesheet" href="js/Engine.css" /> 
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> 
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div class="titleDiv">
+      <h1 id="title">NYAN CAT ATTACK</h1> 
+    </div>
+      <div id="alertBox" >
+        <h2> GAME OVER.</h2>  
+        <h4>Play Again?</h4>
+        <button class="buttonNextGame">Ok</button>
+      </div>
+    </div>
     <script src="js/data.js"></script>
     <script src="js/Enemy.js"></script>
     <script src="js/engine-utilities.js"></script>
