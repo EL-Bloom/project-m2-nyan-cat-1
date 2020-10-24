@@ -6,11 +6,16 @@ const gameEngine = new Engine(document.getElementById('app'));
 // (does the parameter name matter?) which is called event. As we will see below, this function
 // will be called every time the user presses a key. The argument of the function call will be an object.
 // The object will contain information about the key press, such as which key was pressed.
-const keydownHandler = (event) => {
+const keydownHandler = (event) => { 
+  if (!this.isPlayerDead) {
+    backGroundMusic.play(); 
+    movingSound.play();
+  }
   // event.code contains a string. The string represents which key was press. If the
   // key is left, then we call the moveLeft method of gameEngine.player (where is this method defined?)
   if (event.code === 'ArrowLeft') {
-    gameEngine.player.moveLeft();
+    gameEngine.player.moveLeft(); 
+    movingSound.play();
   }
 
   // If `event.code` is the string that represents a right arrow keypress,

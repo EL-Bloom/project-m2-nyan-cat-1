@@ -56,7 +56,8 @@ class Engine {
 
     // We check if the player is dead. If he is, we alert the user
     // and return from the method (Why is the return statement important?)
-    if (this.isPlayerDead()) {
+    if (this.isPlayerDead()) { 
+      endGameCat.play();
      
       document.getElementById('alertBox').style.visibility = 'visible'; 
       document.querySelector('button').addEventListener("click",  
