@@ -13,7 +13,8 @@ class Engine {
     this.player = new Player(this.root);
     // Initially, we have no enemies in the game. The enemies property refers to an array
     // that contains instances of the Enemy class
-    this.enemies = [];
+    this.enemies = []; 
+    this.startTime = new Date().getTime();
     // We add the background image to the game
     addBackground(this.root);
   }
@@ -23,6 +24,8 @@ class Engine {
   //  - Detects a collision between the player and any enemy
   //  - Removes enemies that are too low from the enemies array
   gameLoop = () => {
+    let currentTime = new Date().getTime();
+    let timeGoneBy = currentTime - this.startTime;
     // This code is to see how much time, in milliseconds, has elapsed since the last
     // time this method was called.
     // (new Date).getTime() evaluates to the number of milliseconds since January 1st, 1970 at midnight.
@@ -31,12 +34,16 @@ class Engine {
     }
 
     let timeDiff = new Date().getTime() - this.lastFrame;
+    const calculateSpeedIncrease = () => { 
+      return Math.floor(timeGoneBy / 5000) * 2;
+    };
+
 
     this.lastFrame = new Date().getTime();
     // We use the number of milliseconds since the last call to gameLoop to update the enemy positions.
     // Furthermore, if any enemy is below the bottom of our game, its destroyed property will be set. (See Enemy.js)
     this.enemies.forEach((enemy) => {
-      enemy.update(timeDiff);
+      enemy.update(timeDiff, calculateSpeedIncrease());
     });
 
     // We remove all the destroyed enemies from the array referred to by \`this.enemies\`.
