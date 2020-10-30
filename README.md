@@ -14,4 +14,4 @@
 - Alert message when the player has lost his/hers 9 lives and it is GAME OVER. 
 ## Useful Links
 
-- www.nyan-kat-attack.netlify.app
+- https://nyan-kat-attack.netlify.app/
