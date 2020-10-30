@@ -13,7 +13,10 @@ class Engine {
     this.player = new Player(this.root);
     // Initially, we have no enemies in the game. The enemies property refers to an array
     // that contains instances of the Enemy class
-    this.enemies = []; 
+    this.enemies = [];
+    this.life = this.player.playerLife;
+    console.log(this.life);
+
     this.startTime = new Date().getTime();
     // We add the background image to the game
     addBackground(this.root);
@@ -26,6 +29,7 @@ class Engine {
   gameLoop = () => {
     let currentTime = new Date().getTime();
     let timeGoneBy = currentTime - this.startTime;
+
     // This code is to see how much time, in milliseconds, has elapsed since the last
     // time this method was called.
     // (new Date).getTime() evaluates to the number of milliseconds since January 1st, 1970 at midnight.
@@ -34,10 +38,9 @@ class Engine {
     }
 
     let timeDiff = new Date().getTime() - this.lastFrame;
-    const calculateSpeedIncrease = () => { 
+    const calculateSpeedIncrease = () => {
       return Math.floor(timeGoneBy / 5000) * 2;
     };
-
 
     this.lastFrame = new Date().getTime();
     // We use the number of milliseconds since the last call to gameLoop to update the enemy positions.
@@ -64,18 +67,22 @@ class Engine {
     // We check if the player is dead. If he is, we alert the user
     // and return from the method (Why is the return statement important?)
     if (this.isPlayerDead()) { 
+      //If the player is touched, the sound cue (cat meowing is being played)
       endGameCat.play();
-     
-      document.getElementById('alertBox').style.visibility = 'visible'; 
-      document.querySelector('button').addEventListener("click",  
-      function(){ 
-        document.getElementById('alertBox').style.visibility = 'hidden';  
-        location.reload(); 
-       }); 
-    return; 
-    
-      // const alertBox = new Text(); 
-      // return alertBox;
+      // If the player is dead, we remove a life and replace the inner text with the new number
+      this.life -= 1;
+      let livesEl = document.getElementById("lives");
+      livesEl.innerText = this.life;
+      // If the player gets to 0, it is GAME OVER and a alert message will pop up 
+      if (this.life === 0) {
+        document.getElementById("alertBox").style.visibility = "visible";
+        document.querySelector("button").addEventListener("click", function () {
+          document.getElementById("alertBox").style.visibility = "hidden";
+          location.reload();
+        });
+
+        return;
+      }
     }
 
     // If the player is not dead, then we put a setTimeout to run the gameLoop in 20 milliseconds
@@ -103,7 +110,9 @@ class Engine {
         enemyRight > playerLeft &&
         enemyLeft < playerRight
       ) {
+        (enemy.x = 0) && (enemy.y = 0);
         return true;
       }
+    }
   };
-}}
+}
